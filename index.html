@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>TaskDeck</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2E5BFF">
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TaskDeck">
+<style>
+  :root{
+    --page-bg:
+      radial-gradient(1100px 700px at 92% -8%, rgba(90,120,255,0.10), transparent 60%),
+      linear-gradient(160deg,#F7F9FF 0%, #EEF1FC 100%);
+    --sidebar-bg:#FFFFFF;
+    --sidebar-border:#E8EAF3;
+    --card-bg:#FFFFFF;
+    --card-border:#E7EAF4;
+    --input-bg:#F5F7FC;
+    --input-border:#E3E7F3;
+    --text-primary:#12151F;
+    --text-secondary:#6B7086;
+    --text-tertiary:#9DA1B5;
+    --accent:#2E5BFF;
+    --accent-grad:linear-gradient(135deg,#7C6CF7,#2E5BFF);
+    --nav-active-bg:#2E5BFF;
+    --nav-active-text:#FFFFFF;
+    --pill-bg:#F1F3FA;
+    --shadow-card:0 8px 30px rgba(20,30,70,0.06);
+    --red:#E24B4A;
+    --orange:#F0A23D;
+    --green:#34B87A;
+    --hover:rgba(46,91,255,0.06);
+    --radius-lg:16px;
+    --radius-md:10px;
+    --radius-sm:8px;
+  }
+  [data-theme="dark"]{
+    --page-bg:
+      radial-gradient(1100px 700px at 92% -8%, rgba(94,110,246,0.28), transparent 60%),
+      linear-gradient(160deg,#0B0E1A 0%, #05060B 100%);
+    --sidebar-bg:#0E1120;
+    --sidebar-border:rgba(255,255,255,0.06);
+    --card-bg:#12162A;
+    --card-border:rgba(255,255,255,0.07);
+    --input-bg:rgba(255,255,255,0.04);
+    --input-border:rgba(255,255,255,0.09);
+    --text-primary:#F1F3FB;
+    --text-secondary:#8A90AC;
+    --text-tertiary:#5C6180;
+    --accent:#3D6BFF;
+    --accent-grad:linear-gradient(135deg,#7C6CF7,#3D6BFF);
+    --nav-active-bg:#2F5CFF;
+    --nav-active-text:#FFFFFF;
+    --pill-bg:rgba(255,255,255,0.06);
+    --shadow-card:0 8px 30px rgba(0,0,0,0.35);
+    --red:#FF6B6A;
+    --orange:#FFA83D;
+    --green:#3DDC91;
+    --hover:rgba(61,107,255,0.12);
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;padding:0;height:100%;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic Medium","Yu Gothic",sans-serif;
+    background:var(--page-bg);
+    color:var(--text-primary);
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  button,input,select,textarea{font-family:inherit;}
+  ::selection{background:rgba(46,91,255,0.2);}
+  .app{display:flex;height:100vh;width:100vw;}
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    width:240px;min-width:240px;
+    background:var(--sidebar-bg);
+    border-right:1px solid var(--sidebar-border);
+    display:flex;flex-direction:column;
+    padding:20px 14px;
+    transition:margin-left .25s ease;
+  }
+  .sidebar.collapsed{margin-left:-240px;}
+
+  .brand{display:flex;align-items:center;gap:10px;padding:0 4px;margin-bottom:14px;}
+  .brand-icon{
+    width:34px;height:34px;border-radius:10px;background:var(--accent-grad);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    box-shadow:0 4px 14px rgba(46,91,255,0.3);
+  }
+  .brand-name{font-size:15px;font-weight:700;color:var(--text-primary);}
+  .brand-badge{
+    font-size:10px;font-weight:700;color:var(--accent);background:var(--hover);
+    padding:2px 6px;border-radius:5px;margin-left:5px;letter-spacing:.02em;
+  }
+
+  /* ---------- Mode tabs ---------- */
+  .mode-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+  .mode-tab{
+    flex:1 1 30%;min-width:0;display:flex;flex-direction:column;align-items:center;gap:4px;
+    padding:9px 4px 7px;border-radius:11px;cursor:pointer;
+    color:var(--text-secondary);background:var(--pill-bg);
+    user-select:none;transition:background .12s ease,color .12s ease;
+  }
+  .mode-tab svg{flex-shrink:0;}
+  .mode-tab span{font-size:10.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
+  .mode-tab:hover{background:var(--hover);color:var(--text-primary);}
+  .mode-tab.active{background:var(--nav-active-bg);color:var(--nav-active-text);}
+
+  .search-box{
+    display:flex;align-items:center;gap:8px;
+    background:var(--input-bg);border:1px solid var(--input-border);
+    border-radius:9px;padding:8px 10px;margin-bottom:18px;
+  }
+  .search-box input{
+    border:none;background:transparent;outline:none;
+    font-size:13px;color:var(--text-primary);width:100%;
+  }
+  .search-box input::placeholder{color:var(--text-tertiary);}
+  .search-box svg{flex-shrink:0;color:var(--text-tertiary);}
+
+  .nav-item{
+    display:flex;align-items:center;gap:10px;
+    padding:8px 10px;border-radius:9px;cursor:pointer;
+    font-size:13.5px;color:var(--text-secondary);font-weight:500;
+    margin-bottom:2px;user-select:none;
+  }
+  .nav-item svg{flex-shrink:0;}
+  .nav-item:hover{background:var(--hover);color:var(--text-primary);}
+  .nav-item.active{background:var(--nav-active-bg);color:var(--nav-active-text);}
+  .nav-item.active svg{color:var(--nav-active-text);}
+  .nav-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .nav-count{font-size:12px;color:inherit;opacity:.75;font-variant-numeric:tabular-nums;}
+
+  .color-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .nav-edit-btn{
+    background:none;border:none;color:inherit;opacity:.55;
+    width:24px;height:24px;border-radius:6px;cursor:pointer;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;padding:0;
+  }
+  .nav-edit-btn:hover{opacity:1;background:rgba(120,120,128,0.16);}
+
+  .sidebar-section-label{
+    font-size:11px;font-weight:700;color:var(--text-tertiary);
+    text-transform:uppercase;letter-spacing:.06em;
+    margin:18px 10px 8px;
+  }
+  .my-lists{flex:1;overflow-y:auto;margin:0 -2px;padding:0 2px;}
+  .my-lists::-webkit-scrollbar{width:0;}
+
+  .add-list-row{
+    display:flex;align-items:center;gap:10px;
+    padding:8px 10px;border-radius:9px;cursor:pointer;
+    color:var(--text-tertiary);font-size:13.5px;font-weight:500;
+  }
+  .add-list-row:hover{background:var(--hover);color:var(--accent);}
+
+  .sidebar-footer{
+    border-top:1px solid var(--sidebar-border);
+    padding-top:12px;margin-top:10px;
+    display:flex;flex-direction:column;gap:2px;
+  }
+  .footer-link{
+    display:flex;align-items:center;gap:9px;
+    padding:8px 10px;border-radius:9px;cursor:pointer;
+    font-size:13px;color:var(--text-secondary);font-weight:500;
+  }
+  .footer-link:hover{background:var(--hover);color:var(--text-primary);}
+
+  /* ---------- Main ---------- */
+  .main{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden;}
+  .main-header{padding:26px 32px 18px;display:flex;align-items:center;gap:12px;}
+  .header-icon-btn{display:none;}
+  .main-title{font-size:28px;font-weight:700;margin:0;letter-spacing:-.01em;}
+  .main-sub{font-size:13.5px;color:var(--text-secondary);margin-top:3px;}
+
+  .due-banner{
+    margin:0 32px 14px;padding:10px 14px;border-radius:12px;
+    background:linear-gradient(135deg, rgba(240,162,61,0.16), rgba(226,75,74,0.10));
+    border:1px solid rgba(240,162,61,0.35);
+    display:flex;align-items:center;gap:10px;
+  }
+  .due-banner-icon{color:var(--orange);flex-shrink:0;display:flex;}
+  .due-banner-text{flex:1;font-size:13px;font-weight:500;color:var(--text-primary);}
+  .due-banner-link{
+    background:var(--orange);color:#fff;border:none;font-size:12px;font-weight:600;
+    padding:5px 12px;border-radius:999px;cursor:pointer;flex-shrink:0;
+  }
+  .due-banner-close{
+    background:none;border:none;color:var(--text-tertiary);font-size:18px;cursor:pointer;
+    padding:0 2px;line-height:1;flex-shrink:0;
+  }
+  .due-banner-close:hover{color:var(--text-primary);}
+
+  .content-row{
+    flex:1;display:flex;gap:18px;
+    padding:0 32px 18px;min-height:0;
+  }
+
+  .card{
+    background:var(--card-bg);
+    border:1px solid var(--card-border);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-card);
+    display:flex;flex-direction:column;
+    overflow:hidden;
+  }
+
+  .task-list-card{width:360px;min-width:300px;}
+  .task-list-scroll{flex:1;overflow-y:auto;padding:10px;}
+  .task-list-scroll::-webkit-scrollbar,.detail-scroll::-webkit-scrollbar{width:8px;}
+  .task-list-scroll::-webkit-scrollbar-thumb,.detail-scroll::-webkit-scrollbar-thumb{
+    background:var(--card-border);border-radius:4px;
+  }
+
+  .quick-add{
+    display:flex;align-items:center;gap:9px;
+    background:var(--input-bg);border:1px solid var(--input-border);
+    border-radius:9px;padding:9px 11px;margin:4px 4px 10px;
+  }
+  .quick-add .plus-circle{
+    width:19px;height:19px;border-radius:50%;
+    border:1.5px solid var(--accent);color:var(--accent);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    font-size:13px;line-height:1;
+  }
+  .quick-add input{
+    border:none;outline:none;background:transparent;
+    font-size:13.5px;width:100%;color:var(--text-primary);
+  }
+  .quick-add input::placeholder{color:var(--text-tertiary);}
+
+  .task-row{
+    display:flex;align-items:flex-start;gap:10px;
+    padding:9px 8px;margin:0 0 2px;border-radius:9px;cursor:pointer;
+  }
+  .task-row:hover{background:var(--hover);}
+  .task-row.selected{background:var(--hover);box-shadow:inset 0 0 0 1px var(--accent);}
+
+  .checkbox{
+    width:19px;height:19px;border-radius:50%;
+    border:1.5px solid var(--text-tertiary);
+    flex-shrink:0;margin-top:1px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .15s ease,border-color .15s ease;
+  }
+  .checkbox.priority{border-color:var(--orange);}
+  .checkbox.done{background:var(--accent);border-color:var(--accent);}
+  .checkbox svg{opacity:0;transform:scale(.4);transition:opacity .15s ease,transform .15s ease;}
+  .checkbox.done svg{opacity:1;transform:scale(1);}
+
+  .list-dot-wrap{width:19px;height:19px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;}
+  .list-dot-wrap .dot{width:9px;height:9px;border-radius:50%;}
+
+  .task-body{flex:1;min-width:0;}
+  .task-title{font-size:13.5px;line-height:1.4;color:var(--text-primary);word-break:break-word;}
+  .task-row.done .task-title{color:var(--text-tertiary);text-decoration:line-through;}
+  .task-meta{display:flex;align-items:center;gap:6px;margin-top:3px;flex-wrap:wrap;}
+  .task-notes-preview{font-size:11.5px;color:var(--text-tertiary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:170px;}
+  .due-chip{
+    font-size:11px;padding:1px 6px;border-radius:5px;
+    color:var(--text-secondary);background:var(--pill-bg);
+    display:flex;align-items:center;gap:3px;font-weight:500;white-space:nowrap;
+  }
+  .due-chip.overdue{color:#fff;background:var(--red);}
+  .due-chip.today{color:#fff;background:var(--accent);}
+  .due-chip.accent{color:#fff;background:var(--accent);}
+  .due-chip.status-todo{color:#fff;background:var(--green);}
+  .due-chip.status-reject{color:var(--text-tertiary);background:var(--pill-bg);text-decoration:line-through;}
+  .flag-dot{color:var(--orange);display:flex;align-items:center;}
+
+  .section-label{
+    font-size:11px;font-weight:700;color:var(--text-tertiary);
+    text-transform:uppercase;letter-spacing:.05em;
+    margin:12px 8px 6px;display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none;
+  }
+  .section-label .chev{transition:transform .15s ease;font-size:10px;}
+  .section-label.collapsed .chev{transform:rotate(-90deg);}
+  .section-label.static{cursor:default;}
+
+  .empty-hint{padding:60px 20px;text-align:center;color:var(--text-tertiary);font-size:13px;}
+
+  /* ---------- Detail card ---------- */
+  .detail-card{flex:1;min-width:0;}
+  .detail-empty-wrap{flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:var(--text-tertiary);font-size:13.5px;}
+  .detail-scroll{flex:1;overflow-y:auto;padding:26px 30px;}
+
+  .mobile-back{display:none;align-items:center;gap:4px;color:var(--accent);font-size:13.5px;cursor:pointer;margin-bottom:14px;font-weight:500;}
+
+  .detail-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;}
+  .detail-title{
+    flex:1;font-size:20px;font-weight:700;border:none;outline:none;
+    background:transparent;color:var(--text-primary);resize:none;overflow:hidden;
+    line-height:1.35;font-family:inherit;letter-spacing:-.01em;
+  }
+  .detail-title.done{color:var(--text-tertiary);text-decoration:line-through;}
+  .detail-notes{
+    width:100%;border:none;outline:none;background:transparent;
+    color:var(--text-secondary);font-size:13.5px;line-height:1.65;
+    resize:none;overflow:hidden;font-family:inherit;min-height:22px;margin-bottom:20px;
+  }
+  .detail-notes::placeholder,.detail-title::placeholder{color:var(--text-tertiary);}
+
+  .field-group{background:var(--input-bg);border:1px solid var(--input-border);border-radius:var(--radius-md);overflow:hidden;margin-bottom:14px;}
+  .field-group:empty{display:none;margin:0;}
+  .field-row{display:flex;align-items:center;gap:12px;padding:11px 13px;border-bottom:1px solid var(--input-border);}
+  .field-row:last-child{border-bottom:none;}
+  .field-row .f-icon{width:18px;color:var(--text-secondary);flex-shrink:0;display:flex;justify-content:center;}
+  .field-row .f-label{font-size:13.5px;color:var(--text-primary);flex-shrink:0;width:74px;font-weight:500;}
+  .field-row input[type="date"],.field-row input[type="text"]{
+    border:none;outline:none;background:transparent;color:var(--text-primary);
+    font-size:13.5px;font-family:inherit;flex:1;text-align:right;cursor:pointer;
+  }
+  .field-row input[type="text"]{cursor:text;}
+  select.plain-select{
+    border:none;outline:none;background:transparent;color:var(--text-primary);
+    font-size:13.5px;font-family:inherit;flex:1;text-align:right;cursor:pointer;direction:rtl;
+  }
+
+  .segmented{
+    display:flex;background:var(--pill-bg);border-radius:999px;padding:3px;gap:2px;margin-left:auto;
+  }
+  .segmented button{
+    border:none;background:transparent;color:var(--text-secondary);
+    font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px;cursor:pointer;
+    white-space:nowrap;
+  }
+  .segmented button.active{background:var(--card-bg);color:var(--text-primary);box-shadow:0 1px 4px rgba(0,0,0,0.12);}
+
+  .toggle{width:42px;height:24px;border-radius:14px;background:rgba(120,120,128,0.28);position:relative;cursor:pointer;flex-shrink:0;margin-left:auto;transition:background .15s;}
+  .toggle.on{background:var(--accent);}
+  .toggle .knob{width:20px;height:20px;border-radius:50%;background:#fff;position:absolute;top:2px;left:2px;box-shadow:0 1px 3px rgba(0,0,0,0.3);transition:left .15s;}
+  .toggle.on .knob{left:19px;}
+
+  /* ---------- Field blocks (multi-line, mode-specific) ---------- */
+  .field-block{background:var(--input-bg);border:1px solid var(--input-border);border-radius:var(--radius-md);padding:11px 13px;margin-bottom:10px;border-left:3px solid var(--accent);}
+  .field-block-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;gap:8px;}
+  .field-block-label{font-size:11.5px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.04em;}
+  .copy-btn{background:none;border:none;color:var(--accent);font-size:11px;font-weight:700;cursor:pointer;padding:3px 9px;border-radius:6px;flex-shrink:0;}
+  .copy-btn:hover{background:var(--hover);}
+  .copy-btn.copied{color:var(--green);}
+  .field-block textarea{
+    width:100%;border:none;outline:none;background:transparent;resize:none;overflow:hidden;
+    font-family:inherit;font-size:13.5px;color:var(--text-primary);line-height:1.6;min-height:20px;
+  }
+  .field-block textarea.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;}
+  .field-block textarea::placeholder{color:var(--text-tertiary);}
+
+  /* ---------- Syntax-highlighted code editor (overlay technique) ---------- */
+  .code-editor{position:relative;}
+  .code-editor .code-highlight,.code-editor textarea.code-input{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:13px;line-height:1.6;padding:0;margin:0;border:none;
+    box-sizing:border-box;white-space:pre-wrap;word-break:break-word;width:100%;
+  }
+  .code-editor textarea.code-input{
+    position:relative;z-index:2;background:transparent;color:transparent;
+    caret-color:var(--text-primary);-webkit-text-fill-color:transparent;
+    resize:none;overflow:hidden;outline:none;min-height:20px;
+  }
+  .code-editor .code-highlight{
+    position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;color:var(--text-primary);
+  }
+  .tok-fn{color:var(--accent);font-weight:600;}
+  .tok-str{color:var(--green);}
+  .tok-ref{color:var(--orange);}
+  .tok-num{color:var(--text-secondary);font-weight:600;}
+
+  .detail-actions{display:flex;justify-content:flex-end;margin-top:6px;}
+  .btn-text{background:none;border:none;color:var(--red);font-size:13px;cursor:pointer;padding:6px 10px;border-radius:6px;font-weight:500;}
+  .btn-text:hover{background:rgba(226,75,74,0.1);}
+
+  /* ---------- Footer bar ---------- */
+  .status-bar{display:flex;align-items:center;justify-content:space-between;padding:0 32px 20px;}
+  .status-pill{
+    display:flex;align-items:center;gap:8px;
+    background:var(--pill-bg);border-radius:999px;padding:6px 13px;
+    font-size:12px;color:var(--text-secondary);font-weight:500;
+  }
+  .status-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+  .status-note{font-size:12px;color:var(--text-tertiary);}
+
+  /* ---------- Modal ---------- */
+  .modal-overlay{position:fixed;inset:0;background:rgba(5,7,15,0.5);display:flex;align-items:center;justify-content:center;z-index:50;}
+  .modal-card{width:320px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:20px;box-shadow:var(--shadow-card);}
+  .modal-card h3{margin:0 0 14px;font-size:16px;font-weight:700;}
+  .modal-card input[type="text"]{
+    width:100%;padding:10px 12px;border-radius:9px;border:1px solid var(--input-border);
+    background:var(--input-bg);color:var(--text-primary);font-size:13.5px;outline:none;margin-bottom:14px;font-family:inherit;
+  }
+  .color-swatches{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+  .swatch{width:24px;height:24px;border-radius:50%;cursor:pointer;border:2px solid transparent;}
+  .swatch.selected{border-color:var(--text-primary);}
+  .modal-buttons{display:flex;justify-content:flex-end;gap:8px;}
+  .btn{padding:8px 15px;border-radius:9px;font-size:13px;cursor:pointer;border:none;font-weight:600;}
+  .btn-secondary{background:var(--pill-bg);color:var(--text-primary);}
+  .btn-secondary:hover{filter:brightness(0.94);}
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-primary:hover{opacity:.88;}
+  .btn-danger{background:var(--red);color:#fff;}
+
+  .sidebar-backdrop{
+    display:none;position:fixed;inset:0;background:rgba(5,7,15,0.4);z-index:39;
+  }
+  .sidebar-backdrop.show{display:block;}
+
+  @media (max-width:900px){
+    html,body{overflow:auto;height:auto;min-height:100vh;}
+    .app{height:100vh;height:100dvh;}
+    .sidebar{
+      position:fixed;z-index:40;top:0;bottom:0;left:0;height:100vh;height:100dvh;
+      box-shadow:var(--shadow-card);
+      padding-top:calc(20px + env(safe-area-inset-top));
+      padding-bottom:calc(20px + env(safe-area-inset-bottom));
+      margin-left:-240px;
+    }
+    .sidebar:not(.collapsed){margin-left:0;}
+    .header-icon-btn{display:flex !important;}
+    .main-header{padding:calc(16px + env(safe-area-inset-top)) 16px 12px;}
+    .main-title{font-size:23px;}
+    .content-row{padding:0 16px 14px;position:relative;flex-direction:column;min-height:0;}
+    .due-banner{margin:0 16px 12px;}
+    .task-list-card{width:auto;flex:1;min-height:0;}
+    .status-bar{padding:0 16px calc(14px + env(safe-area-inset-bottom));flex-direction:column;align-items:flex-start;gap:6px;}
+    .detail-card{
+      position:fixed;inset:0;z-index:41;display:none;border-radius:0;border:none;
+      padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);
+    }
+    .detail-card.show{display:flex;}
+    .mobile-back{display:flex;}
+
+    .nav-item{padding:11px 12px;font-size:14.5px;}
+    .add-list-row{padding:11px 12px;font-size:14.5px;}
+    .footer-link{padding:11px 12px;font-size:14px;}
+    .checkbox{width:23px;height:23px;}
+    .task-row{padding:11px 8px;}
+    .quick-add{padding:12px 13px;}
+    .quick-add input{font-size:15px;}
+    .detail-title{font-size:19px;}
+    .detail-scroll{padding:20px 18px calc(20px + env(safe-area-inset-bottom));}
+    .field-row{padding:13px 13px;}
+    .field-row .f-label{width:64px;font-size:13px;}
+    .segmented button{padding:7px 10px;font-size:12px;}
+    .search-box{padding:10px 12px;}
+    .search-box input{font-size:15px;}
+
+    button,.nav-item,.add-list-row,.footer-link,.checkbox,.task-row,.toggle,.segmented button,.mode-tab{touch-action:manipulation;}
+  }
+  @media (max-width:420px){
+    .field-row .f-label{width:auto;flex:1;}
+    .field-row{flex-wrap:wrap;}
+    .segmented{margin-left:0;width:100%;justify-content:space-between;}
+  }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+
+  <div class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      </div>
+      <div class="brand-name">TaskDeck</div>
+      <div class="brand-badge">LOCAL</div>
+    </div>
+
+    <div class="mode-tabs" id="modeTabs"></div>
+
+    <div class="search-box">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="searchInput" placeholder="検索">
+    </div>
+
+    <div id="smartLists"></div>
+
+    <div class="sidebar-section-label" id="listSectionLabel">マイリスト</div>
+    <div class="my-lists" id="myLists"></div>
+    <div class="add-list-row" id="addListBtn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <span id="addListLabel">リストを追加</span>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="footer-link" id="themeToggle">
+        <svg id="themeIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <span id="themeLabel">ライトモード</span>
+      </div>
+      <div class="footer-link" id="exportBtn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>バックアップを書き出し</span>
+      </div>
+      <div class="footer-link" id="importBtn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <span>バックアップを読み込み</span>
+      </div>
+      <input type="file" id="importFile" accept="application/json" style="display:none;">
+    </div>
+  </div>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <div class="main">
+    <div class="main-header">
+      <button class="icon-btn header-icon-btn" id="sidebarToggle" style="background:none;border:none;color:var(--text-secondary);width:30px;height:30px;border-radius:8px;cursor:pointer;align-items:center;justify-content:center;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div>
+        <h1 class="main-title" id="viewTitle">今日</h1>
+        <div class="main-sub" id="viewSub"></div>
+      </div>
+    </div>
+
+    <div class="due-banner" id="dueBanner" style="display:none;">
+      <div class="due-banner-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+      </div>
+      <div class="due-banner-text" id="dueBannerText"></div>
+      <button class="due-banner-link" id="dueBannerLink">見る</button>
+      <button class="due-banner-close" id="dueBannerClose">&times;</button>
+    </div>
+
+    <div class="content-row">
+      <div class="card task-list-card">
+        <div class="task-list-scroll" id="taskListScroll"></div>
+      </div>
+
+      <div class="card detail-card" id="detailCard">
+        <div class="detail-empty-wrap" id="detailEmpty">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          <div id="detailEmptyText">タスクを選択してください</div>
+        </div>
+        <div class="detail-scroll" id="detailScroll" style="display:none;">
+          <div class="mobile-back" id="mobileBack">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            戻る
+          </div>
+          <div class="detail-top">
+            <div class="checkbox" id="detailCheckbox" style="margin-top:4px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <textarea class="detail-title" id="detailTitle" placeholder="タスク名" rows="1"></textarea>
+          </div>
+          <textarea class="detail-notes" id="detailNotes" placeholder="メモを追加" rows="1"></textarea>
+
+          <div id="fieldBlocks"></div>
+          <div class="field-group" id="fieldGroup"></div>
+
+          <div class="detail-actions">
+            <button class="btn-text" id="deleteTaskBtn">削除</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <div class="status-pill"><span class="dot"></span><span id="statusText">0件のリスト ・ 0件の未完了タスク</span></div>
+      <div class="status-note">ブラウザに保存されます（file:// でも動作）</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var STORAGE_KEY = "apple_task_manager_v1";
+  var COLORS = ["#E24B4A","#F0A23D","#F5CC3E","#34B87A","#2E5BFF","#6C5DD3","#B45DE0","#E0548C","#8A90A6"];
+
+  function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
+  function todayStr(){
+    var d = new Date();
+    return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  }
+  function getISOWeek(d){
+    d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    var dayNum = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+    var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+    var weekNo = Math.ceil((((d - yearStart) / 86400000) + 1)/7);
+    return d.getUTCFullYear() + "-W" + String(weekNo).padStart(2,"0");
+  }
+  function deepClone(o){ return JSON.parse(JSON.stringify(o)); }
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c];
+    });
+  }
+  function ic(path){ return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+path+'</svg>'; }
+
+  /* ---------- Excel formula syntax highlighting ----------
+     "文字列" -> tok-str / 関数名( -> tok-fn / セル参照・範囲 -> tok-ref / 数値 -> tok-num
+     コピー時は t.fields の生テキストを使うので、ハイライトは表示専用（安全にHTML化するだけ）。 */
+  var FORMULA_TOKEN_RE = /("[^"]*")|(\b[A-Za-z_][A-Za-z0-9_.]*(?=\())|(\$?[A-Za-z]{1,3}\$?\d+(?::\$?[A-Za-z]{1,3}\$?\d+)?|\$?[A-Za-z]{1,3}:\$?[A-Za-z]{1,3})|(\b\d+(?:\.\d+)?\b)/g;
+  function highlightFormula(str){
+    if(!str) return "";
+    var out = "", lastIndex = 0, m;
+    FORMULA_TOKEN_RE.lastIndex = 0;
+    while((m = FORMULA_TOKEN_RE.exec(str))){
+      out += escapeHtml(str.slice(lastIndex, m.index));
+      if(m[1] !== undefined) out += '<span class="tok-str">' + escapeHtml(m[1]) + '</span>';
+      else if(m[2] !== undefined) out += '<span class="tok-fn">' + escapeHtml(m[2]) + '</span>';
+      else if(m[3] !== undefined) out += '<span class="tok-ref">' + escapeHtml(m[3]) + '</span>';
+      else if(m[4] !== undefined) out += '<span class="tok-num">' + escapeHtml(m[4]) + '</span>';
+      lastIndex = FORMULA_TOKEN_RE.lastIndex;
+    }
+    out += escapeHtml(str.slice(lastIndex));
+    return out;
+  }
+
+  /* =========================================================
+     MODE_CONFIG — 各モードの見た目・入力項目・並び方を定義する。
+     ここを増やすだけで新モードを追加できるようにするのが狙い。
+  ========================================================= */
+  var MODE_IDS = ["task","idea","excel","history","kpt"];
+
+  var TAB_ICON = {
+    task: ic('<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>'),
+    idea: ic('<path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 00-4 12.7c.5.4.8 1 .8 1.7V17h6.4v-.6c0-.7.3-1.3.8-1.7A7 7 0 0012 2z"/>'),
+    excel: ic('<rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/>'),
+    history: ic('<rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/>'),
+    kpt: ic('<polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/>')
+  };
+  var ICONS = {
+    today: ic('<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 15l2 2 4-4"/>'),
+    upcoming: ic('<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>'),
+    flagged: '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><path d="M3 3l3 9-3 9 19-9-19-9z"/></svg>',
+    all: ic('<polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/>')
+  };
+
+  var IDEA_STATUS = [
+    { val:"", label:"検討中", chipClass:"" },
+    { val:"todo", label:"TODO昇格済み", chipClass:"status-todo" },
+    { val:"reject", label:"ボツ", chipClass:"status-reject" }
+  ];
+
+  var MODE_CONFIG = {
+    task: {
+      label:"タスク", tabLabel:"タスク", icon:TAB_ICON.task,
+      listLabel:"リスト", listSectionLabel:"マイリスト", addListLabel:"リストを追加",
+      titlePlaceholder:"タスク名", showNotes:true, notesPlaceholder:"メモを追加",
+      emptyHint:"タスクを選択してください", emptyListHint:"タスクはありません",
+      addPlaceholder:"新規タスク", autoSelectOnAdd:false,
+      hasCheckbox:true, hasDue:true, hasPriority:true, hasFlag:true,
+      hasSmartViews:true, defaultView:"today",
+      searchFieldsExtra:[]
+    },
+    idea: {
+      label:"アイデア", tabLabel:"アイデア", icon:TAB_ICON.idea,
+      listLabel:"カテゴリ", listSectionLabel:"カテゴリ", addListLabel:"カテゴリを追加",
+      titlePlaceholder:"アイデア名", showNotes:true, notesPlaceholder:"メモ・詳細を追加",
+      emptyHint:"アイデアを選択してください", emptyListHint:"アイデアはありません",
+      addPlaceholder:"新規アイデア", autoSelectOnAdd:true,
+      hasCheckbox:false, hasDue:false, hasPriority:false, hasFlag:false,
+      hasSmartViews:false, defaultView:null,
+      sectionBy:"status", sectionOrder:["","todo","reject"],
+      sectionLabels:{"":"検討中","todo":"TODO昇格済み","reject":"ボツ"},
+      detailFields:[
+        { key:"tags", label:"タグ", type:"tags", icon: ic('<path d="M20.59 13.41L11 22.99 1.01 13 10.59 3.41A2 2 0 0112 3H20a2 2 0 012 2v8a2 2 0 01-.59 1.41z"/><circle cx="16" cy="8" r="1.5"/>') }
+      ],
+      searchFieldsExtra:["fields.tags"]
+    },
+    excel: {
+      label:"Excel関数チートシート", tabLabel:"Excel", icon:TAB_ICON.excel,
+      listLabel:"カテゴリ", listSectionLabel:"カテゴリ", addListLabel:"カテゴリを追加",
+      titlePlaceholder:"関数名 (例: SUMIFS)", showNotes:false, notesPlaceholder:"",
+      emptyHint:"関数を選択してください", emptyListHint:"関数が登録されていません",
+      addPlaceholder:"新規関数名", autoSelectOnAdd:true,
+      hasCheckbox:false, hasDue:false, hasPriority:false, hasFlag:false,
+      hasSmartViews:true, defaultView:null,
+      groupByListInAll:true,
+      blockFields:[
+        { key:"syntax", label:"構文", mono:true, copyable:true, highlight:true, placeholder:"=SUMIFS(合計範囲,条件範囲1,条件1,...)" },
+        { key:"example", label:"実例", mono:true, copyable:true, highlight:true, placeholder:"=SUMIFS(C:C,A:A,\"東京\",B:B,\">=2026/01/01\")" }
+      ],
+      searchFieldsExtra:["fields.syntax","fields.example"]
+    },
+    history: {
+      label:"対応履歴クイック検索", tabLabel:"対応履歴", icon:TAB_ICON.history,
+      listLabel:"案件カテゴリ", listSectionLabel:"案件カテゴリ", addListLabel:"カテゴリを追加",
+      titlePlaceholder:"対応タイトル", showNotes:false, notesPlaceholder:"",
+      emptyHint:"対応履歴を選択してください", emptyListHint:"対応履歴はありません",
+      addPlaceholder:"新規対応履歴", autoSelectOnAdd:true,
+      hasCheckbox:false, hasDue:false, hasPriority:false, hasFlag:false,
+      hasSmartViews:true, defaultView:null,
+      groupByListInAll:true,
+      detailFields:[
+        { key:"tags", label:"タグ", type:"tags", icon: ic('<path d="M20.59 13.41L11 22.99 1.01 13 10.59 3.41A2 2 0 0112 3H20a2 2 0 012 2v8a2 2 0 01-.59 1.41z"/><circle cx="16" cy="8" r="1.5"/>') }
+      ],
+      blockFields:[
+        { key:"content", label:"対応内容メモ", mono:false, copyable:false, placeholder:"対応内容・経緯・結果などを記録" }
+      ],
+      searchFieldsExtra:["fields.tags","fields.content"]
+    },
+    kpt: {
+      label:"KPT振り返り", tabLabel:"KPT", icon:TAB_ICON.kpt,
+      listLabel:"プロジェクト", listSectionLabel:"プロジェクト", addListLabel:"プロジェクトを追加",
+      titlePlaceholder:"週 (例: 2026-W32)", showNotes:false, notesPlaceholder:"",
+      emptyHint:"週を選択してください", emptyListHint:"振り返りがまだありません",
+      addPlaceholder:"新規: 例) 2026-W32", autoSelectOnAdd:true,
+      hasCheckbox:false, hasDue:false, hasPriority:false, hasFlag:false,
+      hasSmartViews:true, defaultView:null,
+      groupByListInAll:true, isWeekTitle:true, sortDesc:true,
+      blockFields:[
+        { key:"keep", label:"Keep（続けること）", mono:false, copyable:false, placeholder:"うまくいったこと・続けたいこと", accent:"var(--green)" },
+        { key:"problem", label:"Problem（課題）", mono:false, copyable:false, placeholder:"うまくいかなかったこと・課題", accent:"var(--red)" },
+        { key:"try", label:"Try（次に試すこと）", mono:false, copyable:false, placeholder:"次のアクション・試すこと", accent:"var(--accent)" }
+      ],
+      searchFieldsExtra:["fields.keep","fields.problem","fields.try"]
+    }
+  };
+
+  /* =========================================================
+     State + migration
+  ========================================================= */
+  function defaultModeState(mode){
+    if(mode === "task") return { lists:[{id:"inbox",name:"リマインダー",color:"#2E5BFF"}], items:[], selectedView:"today", selectedItemId:null };
+    if(mode === "idea") return { lists:[{id:"general",name:"一般",color:"#6C5DD3"}], items:[], selectedView:"general", selectedItemId:null };
+    if(mode === "excel") return { lists:[{id:"agg",name:"集計系",color:"#34B87A"},{id:"lookup",name:"検索系",color:"#2E5BFF"},{id:"text",name:"文字列系",color:"#F0A23D"}], items:[], selectedView:"all", selectedItemId:null };
+    if(mode === "history") return { lists:[{id:"general",name:"一般",color:"#F0A23D"}], items:[], selectedView:"all", selectedItemId:null };
+    if(mode === "kpt") return { lists:[{id:"team",name:"チーム",color:"#B45DE0"}], items:[], selectedView:"all", selectedItemId:null };
+  }
+  function defaultState(){
+    var modes = {};
+    MODE_IDS.forEach(function(m){ modes[m] = defaultModeState(m); });
+    return { theme:"light", activeMode:"task", modes:modes };
+  }
+
+  function migrateState(raw){
+    if(!raw) return defaultState();
+    if(raw.modes){
+      MODE_IDS.forEach(function(m){ if(!raw.modes[m]) raw.modes[m] = defaultModeState(m); });
+      if(!raw.activeMode) raw.activeMode = "task";
+      if(!raw.theme) raw.theme = "light";
+      return raw;
+    }
+    // 旧バージョン（タスクのみ）のデータを新形式へ変換
+    if(raw.lists && raw.tasks){
+      var s = defaultState();
+      s.theme = raw.theme || "light";
+      s.modes.task.lists = raw.lists;
+      s.modes.task.items = raw.tasks;
+      s.modes.task.selectedView = raw.selectedView || "today";
+      s.modes.task.selectedItemId = raw.selectedTaskId || null;
+      s.activeMode = "task";
+      return s;
+    }
+    return defaultState();
+  }
+
+  var state = loadState();
+  function loadState(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return defaultState();
+      return migrateState(JSON.parse(raw));
+    }catch(e){ console.warn("load failed", e); return defaultState(); }
+  }
+  function saveState(){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+    catch(e){ console.warn("save failed", e); }
+  }
+
+  document.documentElement.setAttribute("data-theme", state.theme || "light");
+
+  var searchQuery = "";
+  var completedCollapsed = true;
+
+  var $ = function(id){ return document.getElementById(id); };
+  var smartListsEl = $("smartLists");
+  var myListsEl = $("myLists");
+  var taskListScroll = $("taskListScroll");
+  var viewTitle = $("viewTitle");
+  var viewSub = $("viewSub");
+  var detailEmpty = $("detailEmpty");
+  var detailScroll = $("detailScroll");
+  var detailCard = $("detailCard");
+
+  function cfg(){ return MODE_CONFIG[state.activeMode]; }
+  function ms(){ return state.modes[state.activeMode]; }
+  function currentItems(){ return ms().items; }
+
+  /* =========================================================
+     View / filtering helpers
+  ========================================================= */
+  function isOverdue(t){ return t.due && !t.completed && t.due < todayStr(); }
+  function isToday(t){ return t.due === todayStr() && !t.completed; }
+
+  function itemsForView(viewId){
+    var all = currentItems();
+    if(state.activeMode === "task"){
+      if(viewId === "today") return all.filter(function(t){ return !t.completed && t.due && t.due <= todayStr(); });
+      if(viewId === "upcoming") return all.filter(function(t){ return !t.completed && t.due && t.due > todayStr(); });
+      if(viewId === "flagged") return all.filter(function(t){ return t.flagged; });
+      if(viewId === "all") return all.slice();
+      return all.filter(function(t){ return t.listId === viewId; });
+    }
+    if(viewId === "all") return all.slice();
+    return all.filter(function(t){ return t.listId === viewId; });
+  }
+  function countForView(viewId){
+    var list = itemsForView(viewId);
+    if(state.activeMode === "task") return list.filter(function(t){ return !t.completed; }).length;
+    return list.length;
+  }
+
+  /* =========================================================
+     Render: overall
+  ========================================================= */
+  function render(){
+    renderModeTabs();
+    renderSidebar();
+    renderTaskList();
+    renderDetail();
+    renderStatusBar();
+    renderDueBanner();
+  }
+
+  function renderModeTabs(){
+    var el = $("modeTabs");
+    el.innerHTML = "";
+    MODE_IDS.forEach(function(m){
+      var c = MODE_CONFIG[m];
+      var tab = document.createElement("div");
+      tab.className = "mode-tab" + (state.activeMode === m ? " active" : "");
+      tab.innerHTML = c.icon + "<span>"+escapeHtml(c.tabLabel)+"</span>";
+      tab.addEventListener("click", function(){
+        if(state.activeMode === m) return;
+        state.activeMode = m;
+        searchQuery = ""; $("searchInput").value = "";
+        completedCollapsed = true;
+        saveState(); render();
+        closeSidebarOnMobile();
+      });
+      el.appendChild(tab);
+    });
+  }
+
+  function renderSidebar(){
+    var c = cfg();
+    $("listSectionLabel").textContent = c.listSectionLabel;
+    $("addListLabel").textContent = c.addListLabel;
+
+    smartListsEl.innerHTML = "";
+    if(state.activeMode === "task"){
+      [
+        { id:"today", name:"今日", icon:ICONS.today },
+        { id:"upcoming", name:"予定", icon:ICONS.upcoming },
+        { id:"flagged", name:"フラグ付き", icon:ICONS.flagged },
+        { id:"all", name:"すべて", icon:ICONS.all }
+      ].forEach(appendSmartRow);
+    } else {
+      appendSmartRow({ id:"all", name:"すべて", icon:ICONS.all });
+    }
+
+    function appendSmartRow(s){
+      var row = document.createElement("div");
+      row.className = "nav-item" + (ms().selectedView === s.id ? " active" : "");
+      row.innerHTML = s.icon + '<span class="nav-name">'+escapeHtml(s.name)+'</span><span class="nav-count">'+(countForView(s.id) || "")+'</span>';
+      row.addEventListener("click", function(){
+        ms().selectedView = s.id; ms().selectedItemId = null; saveState(); render();
+        closeSidebarOnMobile();
+      });
+      smartListsEl.appendChild(row);
+    }
+
+    myListsEl.innerHTML = "";
+    ms().lists.forEach(function(l){
+      var row = document.createElement("div");
+      row.className = "nav-item" + (ms().selectedView === l.id ? " active" : "");
+      row.innerHTML =
+        '<span class="color-dot" style="background:'+l.color+'"></span>' +
+        '<span class="nav-name">'+escapeHtml(l.name)+'</span>' +
+        '<span class="nav-count">'+(countForView(l.id) || "")+'</span>' +
+        '<button class="nav-edit-btn" title="編集・削除" aria-label="編集・削除"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></button>';
+      row.addEventListener("click", function(){
+        ms().selectedView = l.id; ms().selectedItemId = null; saveState(); render();
+        closeSidebarOnMobile();
+      });
+      row.querySelector(".nav-edit-btn").addEventListener("click", function(e){
+        e.stopPropagation();
+        openListModal(l);
+      });
+      myListsEl.appendChild(row);
+    });
+  }
+
+  function currentViewMeta(){
+    var c = cfg();
+    if(state.activeMode === "task"){
+      var smart = { today:"今日", upcoming:"予定", flagged:"フラグ付き", all:"すべて" };
+      if(smart[ms().selectedView]) return { name: smart[ms().selectedView] };
+    } else if(ms().selectedView === "all"){
+      return { name: "すべて" };
+    }
+    var l = ms().lists.find(function(x){ return x.id === ms().selectedView; });
+    if(l) return { name:l.name };
+    return { name:c.label };
+  }
+
+  /* =========================================================
+     Search matching across generic fields
+  ========================================================= */
+  function itemSearchText(t){
+    var parts = [t.title || "", t.notes || ""];
+    if(t.fields){
+      Object.keys(t.fields).forEach(function(k){
+        var v = t.fields[k];
+        if(Array.isArray(v)) parts.push(v.join(" "));
+        else if(v) parts.push(String(v));
+      });
+    }
+    return parts.join(" ").toLowerCase();
+  }
+
+  /* =========================================================
+     Render: item list (center column)
+  ========================================================= */
+  function renderTaskList(){
+    var c = cfg();
+    var meta = currentViewMeta();
+    viewTitle.textContent = meta.name;
+
+    var list = itemsForView(ms().selectedView);
+    if(searchQuery.trim()){
+      var q = searchQuery.trim().toLowerCase();
+      list = currentItems().filter(function(t){ return itemSearchText(t).indexOf(q) > -1; });
+      viewTitle.textContent = "検索結果";
+    }
+
+    if(state.activeMode === "task"){
+      var openCount = list.filter(function(t){ return !t.completed; }).length;
+      viewSub.textContent = openCount + " 件の未完了タスク";
+    } else {
+      viewSub.textContent = list.length + " 件";
+    }
+
+    taskListScroll.innerHTML = "";
+
+    var isCustomList = ms().lists.some(function(l){ return l.id === ms().selectedView; });
+    if(isCustomList && !searchQuery.trim()){
+      var quickAdd = document.createElement("div");
+      quickAdd.className = "quick-add";
+      var placeholder = c.isWeekTitle ? (c.addPlaceholder + " (今週:" + getISOWeek(new Date()) + ")") : c.addPlaceholder;
+      quickAdd.innerHTML = '<div class="plus-circle">+</div><input type="text" placeholder="'+escapeHtml(placeholder)+'" id="quickAddInput">';
+      taskListScroll.appendChild(quickAdd);
+      var qi = quickAdd.querySelector("input");
+      qi.addEventListener("keydown", function(e){
+        if(e.key === "Enter"){
+          var val = qi.value.trim();
+          if(!val && c.isWeekTitle) val = getISOWeek(new Date());
+          if(val){ addItem(val, ms().selectedView); qi.value=""; }
+        }
+      });
+    }
+
+    if(list.length === 0){
+      var empty = document.createElement("div");
+      empty.className = "empty-hint";
+      empty.textContent = c.emptyListHint;
+      taskListScroll.appendChild(empty);
+      return;
+    }
+
+    if(state.activeMode === "task"){
+      renderTaskModeList(list);
+    } else if(c.sectionBy === "status"){
+      renderStatusGroupedList(list, c);
+    } else if(c.groupByListInAll && ms().selectedView === "all" && !searchQuery.trim()){
+      renderListGroupedList(list, c);
+    } else {
+      var sorted = sortGeneric(list, c);
+      sorted.forEach(function(t){ taskListScroll.appendChild(buildItemRow(t)); });
+    }
+  }
+
+  function sortGeneric(list, c){
+    var copy = list.slice();
+    if(c.isWeekTitle){
+      copy.sort(function(a,b){ return c.sortDesc ? (a.title < b.title ? 1 : (a.title > b.title ? -1 : 0)) : (a.title < b.title ? -1 : 1); });
+    } else {
+      copy.sort(function(a,b){ return (b.createdAt||0) - (a.createdAt||0); });
+    }
+    return copy;
+  }
+
+  function renderTaskModeList(list){
+    var open = list.filter(function(t){ return !t.completed; });
+    var done = list.filter(function(t){ return t.completed; });
+
+    open.sort(function(a,b){
+      if(a.due && b.due) return a.due < b.due ? -1 : (a.due > b.due ? 1 : 0);
+      if(a.due) return -1;
+      if(b.due) return 1;
+      return (b.createdAt||0) - (a.createdAt||0);
+    });
+
+    open.forEach(function(t){ taskListScroll.appendChild(buildItemRow(t)); });
+
+    if(done.length > 0){
+      var label = document.createElement("div");
+      label.className = "section-label" + (completedCollapsed ? " collapsed" : "");
+      label.innerHTML = '<span class="chev">▾</span><span>完了済み ('+done.length+')</span>';
+      label.addEventListener("click", function(){ completedCollapsed = !completedCollapsed; renderTaskList(); });
+      taskListScroll.appendChild(label);
+      if(!completedCollapsed){
+        done.sort(function(a,b){ return (b.completedAt||0) - (a.completedAt||0); });
+        done.forEach(function(t){ taskListScroll.appendChild(buildItemRow(t)); });
+      }
+    }
+  }
+
+  function renderStatusGroupedList(list, c){
+    c.sectionOrder.forEach(function(statusVal){
+      var group = list.filter(function(t){ return (t.status||"") === statusVal; });
+      if(group.length === 0) return;
+      var label = document.createElement("div");
+      label.className = "section-label static";
+      label.innerHTML = '<span>'+escapeHtml(c.sectionLabels[statusVal])+' ('+group.length+')</span>';
+      taskListScroll.appendChild(label);
+      group.sort(function(a,b){ return (b.createdAt||0) - (a.createdAt||0); });
+      group.forEach(function(t){ taskListScroll.appendChild(buildItemRow(t)); });
+    });
+  }
+
+  function renderListGroupedList(list, c){
+    ms().lists.forEach(function(l){
+      var group = list.filter(function(t){ return t.listId === l.id; });
+      if(group.length === 0) return;
+      var label = document.createElement("div");
+      label.className = "section-label static";
+      label.innerHTML = '<span class="color-dot" style="background:'+l.color+';display:inline-block;"></span> <span>'+escapeHtml(l.name)+' ('+group.length+')</span>';
+      taskListScroll.appendChild(label);
+      sortGeneric(group, c).forEach(function(t){ taskListScroll.appendChild(buildItemRow(t)); });
+    });
+  }
+
+  function buildItemRow(t){
+    var c = cfg();
+    var row = document.createElement("div");
+    row.className = "task-row" + (t.completed ? " done" : "") + (ms().selectedItemId === t.id ? " selected" : "");
+
+    if(c.hasCheckbox){
+      var cb = document.createElement("div");
+      cb.className = "checkbox" + (t.completed ? " done" : "") + (t.priority === "high" && !t.completed ? " priority" : "");
+      cb.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>';
+      cb.addEventListener("click", function(e){ e.stopPropagation(); toggleComplete(t.id); });
+      row.appendChild(cb);
+    } else {
+      var l = ms().lists.find(function(x){ return x.id === t.listId; });
+      var dotWrap = document.createElement("div");
+      dotWrap.className = "list-dot-wrap";
+      dotWrap.innerHTML = '<span class="dot" style="background:'+(l?l.color:"#9DA1B5")+'"></span>';
+      row.appendChild(dotWrap);
+    }
+
+    var body = document.createElement("div");
+    body.className = "task-body";
+    var titleDiv = document.createElement("div");
+    titleDiv.className = "task-title";
+    titleDiv.textContent = t.title;
+    body.appendChild(titleDiv);
+
+    var meta = document.createElement("div");
+    meta.className = "task-meta";
+
+    if(state.activeMode === "task"){
+      if(t.flagged){
+        var fd = document.createElement("span");
+        fd.className = "flag-dot";
+        fd.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="var(--orange)" stroke="var(--orange)" stroke-width="1"><path d="M3 3l3 9-3 9 19-9-19-9z"/></svg>';
+        meta.appendChild(fd);
+      }
+      if(t.due){
+        var chip = document.createElement("span");
+        chip.className = "due-chip" + (isOverdue(t) ? " overdue" : (isToday(t) ? " today" : ""));
+        chip.textContent = formatDue(t.due);
+        meta.appendChild(chip);
+      }
+      if(t.notes){
+        var np = document.createElement("span");
+        np.className = "task-notes-preview";
+        np.textContent = t.notes;
+        meta.appendChild(np);
+      }
+    } else if(state.activeMode === "idea"){
+      var stDef = IDEA_STATUS.find(function(s){ return s.val === (t.status||""); }) || IDEA_STATUS[0];
+      var sChip = document.createElement("span");
+      sChip.className = "due-chip" + (stDef.chipClass ? " "+stDef.chipClass : "");
+      sChip.textContent = stDef.label;
+      meta.appendChild(sChip);
+      var tags = (t.fields && t.fields.tags) || [];
+      if(tags.length){
+        var tagP = document.createElement("span");
+        tagP.className = "task-notes-preview";
+        tagP.textContent = tags.map(function(x){ return "#"+x; }).join(" ");
+        meta.appendChild(tagP);
+      }
+    } else if(state.activeMode === "excel"){
+      var syn = (t.fields && t.fields.syntax) || "";
+      if(syn){
+        var synP = document.createElement("span");
+        synP.className = "task-notes-preview";
+        synP.textContent = syn;
+        meta.appendChild(synP);
+      }
+    } else if(state.activeMode === "history"){
+      var htags = (t.fields && t.fields.tags) || [];
+      if(htags.length){
+        var htagP = document.createElement("span");
+        htagP.className = "due-chip accent";
+        htagP.textContent = htags.map(function(x){ return "#"+x; }).join(" ");
+        meta.appendChild(htagP);
+      }
+      var content = (t.fields && t.fields.content) || "";
+      if(content){
+        var cp = document.createElement("span");
+        cp.className = "task-notes-preview";
+        cp.textContent = content;
+        meta.appendChild(cp);
+      }
+    } else if(state.activeMode === "kpt"){
+      var keep = (t.fields && t.fields.keep) || "";
+      if(keep){
+        var kp = document.createElement("span");
+        kp.className = "task-notes-preview";
+        kp.textContent = "Keep: " + keep;
+        meta.appendChild(kp);
+      }
+    }
+
+    if(meta.children.length) body.appendChild(meta);
+
+    row.appendChild(body);
+    row.addEventListener("click", function(){
+      ms().selectedItemId = t.id; saveState(); renderTaskList(); renderDetail();
+      if(window.innerWidth <= 680){ detailCard.classList.add("show"); }
+    });
+    return row;
+  }
+
+  function formatDue(dateStr){
+    var d = new Date(dateStr+"T00:00:00");
+    var t = new Date(todayStr()+"T00:00:00");
+    var diffDays = Math.round((d-t)/86400000);
+    if(diffDays === 0) return "今日";
+    if(diffDays === 1) return "明日";
+    if(diffDays === -1) return "昨日";
+    return (d.getMonth()+1)+"/"+d.getDate();
+  }
+
+  /* =========================================================
+     Render: detail panel (right column) — config-driven
+  ========================================================= */
+  function renderDetail(){
+    var c = cfg();
+    var t = currentItems().find(function(x){ return x.id === ms().selectedItemId; });
+    if(!t){
+      $("detailEmptyText").textContent = c.emptyHint;
+      detailEmpty.style.display = "flex";
+      detailScroll.style.display = "none";
+      detailCard.classList.remove("show");
+      return;
+    }
+    detailEmpty.style.display = "none";
+    detailScroll.style.display = "block";
+
+    var cbWrap = $("detailCheckbox");
+    if(c.hasCheckbox){
+      cbWrap.style.display = "flex";
+      cbWrap.className = "checkbox" + (t.completed ? " done" : "");
+      cbWrap.onclick = function(){ toggleComplete(t.id); };
+    } else {
+      cbWrap.style.display = "none";
+      cbWrap.onclick = null;
+    }
+
+    var titleEl = $("detailTitle");
+    titleEl.value = t.title;
+    titleEl.placeholder = c.titlePlaceholder;
+    titleEl.className = "detail-title" + (t.completed ? " done" : "");
+    autoGrow(titleEl);
+    titleEl.oninput = function(){ t.title = titleEl.value; autoGrow(titleEl); saveState(); renderTaskList(); renderSidebar(); };
+
+    var notesEl = $("detailNotes");
+    if(c.showNotes){
+      notesEl.style.display = "block";
+      notesEl.value = t.notes || "";
+      notesEl.placeholder = c.notesPlaceholder;
+      autoGrow(notesEl);
+      notesEl.oninput = function(){ t.notes = notesEl.value; autoGrow(notesEl); saveState(); renderTaskList(); };
+    } else {
+      notesEl.style.display = "none";
+      notesEl.oninput = null;
+    }
+
+    renderFieldBlocks(t, c);
+    renderFieldGroup(t, c);
+
+    $("deleteTaskBtn").onclick = function(){
+      ms().items = ms().items.filter(function(x){ return x.id !== t.id; });
+      ms().selectedItemId = null; saveState(); render();
+    };
+
+    $("mobileBack").onclick = function(){ detailCard.classList.remove("show"); };
+  }
+
+  function renderFieldBlocks(t, c){
+    var wrap = $("fieldBlocks");
+    wrap.innerHTML = "";
+    if(!c.blockFields) return;
+    if(!t.fields) t.fields = {};
+    c.blockFields.forEach(function(fdef){
+      var block = document.createElement("div");
+      block.className = "field-block";
+      if(fdef.accent) block.style.borderLeftColor = fdef.accent;
+      var head = document.createElement("div");
+      head.className = "field-block-head";
+      var lab = document.createElement("span");
+      lab.className = "field-block-label";
+      lab.textContent = fdef.label;
+      head.appendChild(lab);
+      if(fdef.copyable){
+        var btn = document.createElement("button");
+        btn.className = "copy-btn";
+        btn.type = "button";
+        btn.textContent = "コピー";
+        btn.addEventListener("click", function(){
+          copyText(t.fields[fdef.key] || "");
+          btn.textContent = "コピーしました";
+          btn.classList.add("copied");
+          setTimeout(function(){ btn.textContent = "コピー"; btn.classList.remove("copied"); }, 1400);
+        });
+        head.appendChild(btn);
+      }
+      block.appendChild(head);
+
+      var ta = document.createElement("textarea");
+      ta.rows = 1;
+      ta.placeholder = fdef.placeholder || "";
+      ta.value = t.fields[fdef.key] || "";
+
+      if(fdef.highlight){
+        // シンタックスハイライト: textareaを透明文字にして、色付きの<pre>を裏に重ねる古典的手法。
+        var editorWrap = document.createElement("div");
+        editorWrap.className = "code-editor";
+        var pre = document.createElement("pre");
+        pre.className = "code-highlight";
+        pre.innerHTML = highlightFormula(ta.value) || "&nbsp;";
+        ta.className = "code-input";
+        editorWrap.appendChild(pre);
+        editorWrap.appendChild(ta);
+        block.appendChild(editorWrap);
+        wrap.appendChild(block);
+        autoGrow(ta);
+        ta.addEventListener("input", function(){
+          t.fields[fdef.key] = ta.value; autoGrow(ta);
+          pre.innerHTML = highlightFormula(ta.value) || "&nbsp;";
+          saveState(); renderTaskList();
+        });
+        ta.addEventListener("scroll", function(){ pre.scrollTop = ta.scrollTop; pre.scrollLeft = ta.scrollLeft; });
+      } else {
+        ta.className = fdef.mono ? "mono" : "";
+        block.appendChild(ta);
+        wrap.appendChild(block);
+        autoGrow(ta);
+        ta.addEventListener("input", function(){
+          t.fields[fdef.key] = ta.value; autoGrow(ta); saveState(); renderTaskList();
+        });
+      }
+    });
+  }
+
+  function fieldRow(iconSvg, label){
+    var row = document.createElement("div");
+    row.className = "field-row";
+    var ic1 = document.createElement("div");
+    ic1.className = "f-icon";
+    ic1.innerHTML = iconSvg;
+    var lab = document.createElement("div");
+    lab.className = "f-label";
+    lab.textContent = label;
+    row.appendChild(ic1);
+    row.appendChild(lab);
+    return row;
+  }
+
+  var ICON_FLAG = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2.2"><path d="M3 3l3 9-3 9 19-9-19-9z"/></svg>';
+  var ICON_DUE = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+  var ICON_PRIORITY = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+  var ICON_LIST = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V4h8v3"/></svg>';
+  var ICON_STATUS = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>';
+
+  function renderFieldGroup(t, c){
+    var group = $("fieldGroup");
+    group.innerHTML = "";
+    if(!t.fields) t.fields = {};
+
+    if(c.hasFlag){
+      var row = fieldRow(ICON_FLAG, "フラグ");
+      var toggle = document.createElement("div");
+      toggle.className = "toggle" + (t.flagged ? " on" : "");
+      toggle.innerHTML = '<div class="knob"></div>';
+      toggle.onclick = function(){ t.flagged = !t.flagged; saveState(); render(); };
+      row.appendChild(toggle);
+      group.appendChild(row);
+    }
+
+    if(c.hasDue){
+      var rowD = fieldRow(ICON_DUE, "期限");
+      var dueInput = document.createElement("input");
+      dueInput.type = "date";
+      dueInput.value = t.due || "";
+      dueInput.onchange = function(){ t.due = dueInput.value || null; saveState(); render(); };
+      rowD.appendChild(dueInput);
+      group.appendChild(rowD);
+    }
+
+    if(c.hasPriority){
+      var rowP = fieldRow(ICON_PRIORITY, "優先度");
+      var seg = document.createElement("div");
+      seg.className = "segmented";
+      [["","なし"],["low","低"],["mid","中"],["high","高"]].forEach(function(pair){
+        var btn = document.createElement("button");
+        btn.textContent = pair[1];
+        btn.type = "button";
+        btn.classList.toggle("active", pair[0] === (t.priority||""));
+        btn.onclick = function(){ t.priority = pair[0] || null; saveState(); renderTaskList(); renderDetail(); };
+        seg.appendChild(btn);
+      });
+      rowP.appendChild(seg);
+      group.appendChild(rowP);
+    }
+
+    if(state.activeMode === "idea"){
+      var rowS = fieldRow(ICON_STATUS, "ステータス");
+      var sel = document.createElement("select");
+      sel.className = "plain-select";
+      IDEA_STATUS.forEach(function(s){
+        var opt = document.createElement("option");
+        opt.value = s.val; opt.textContent = s.label;
+        if((t.status||"") === s.val) opt.selected = true;
+        sel.appendChild(opt);
+      });
+      sel.onchange = function(){ t.status = sel.value || ""; saveState(); renderTaskList(); renderDetail(); };
+      rowS.appendChild(sel);
+      group.appendChild(rowS);
+    }
+
+    if(c.detailFields){
+      c.detailFields.forEach(function(fdef){
+        if(fdef.type === "tags"){
+          var rowT = fieldRow(fdef.icon || ICON_STATUS, fdef.label);
+          var input = document.createElement("input");
+          input.type = "text";
+          input.placeholder = "カンマ区切り";
+          input.value = (t.fields[fdef.key] || []).join(", ");
+          input.onchange = function(){
+            t.fields[fdef.key] = input.value.split(",").map(function(s){ return s.trim(); }).filter(Boolean);
+            saveState(); renderTaskList();
+          };
+          rowT.appendChild(input);
+          group.appendChild(rowT);
+        }
+      });
+    }
+
+    var rowL = fieldRow(ICON_LIST, c.listLabel);
+    var listSelect = document.createElement("select");
+    listSelect.className = "plain-select";
+    ms().lists.forEach(function(l){
+      var opt = document.createElement("option");
+      opt.value = l.id; opt.textContent = l.name;
+      if(l.id === t.listId) opt.selected = true;
+      listSelect.appendChild(opt);
+    });
+    listSelect.onchange = function(){ t.listId = listSelect.value; saveState(); render(); };
+    rowL.appendChild(listSelect);
+    group.appendChild(rowL);
+  }
+
+  /* =========================================================
+     Status bar
+  ========================================================= */
+  function renderStatusBar(){
+    var c = cfg();
+    var listCount = ms().lists.length;
+    if(state.activeMode === "task"){
+      var openCount = ms().items.filter(function(t){ return !t.completed; }).length;
+      $("statusText").textContent = listCount + "件のリスト ・ " + openCount + "件の未完了タスク";
+    } else {
+      $("statusText").textContent = listCount + "件の" + c.listLabel + " ・ " + ms().items.length + "件のアイテム";
+    }
+  }
+
+  function autoGrow(el){ el.style.height = "auto"; el.style.height = el.scrollHeight + "px"; }
+
+  /* =========================================================
+     Mutations
+  ========================================================= */
+  function toggleComplete(id){
+    var t = currentItems().find(function(x){ return x.id === id; });
+    if(!t) return;
+    t.completed = !t.completed;
+    t.completedAt = t.completed ? Date.now() : null;
+    saveState(); render();
+  }
+
+  function addItem(title, listId){
+    var c = cfg();
+    var m = ms();
+    var finalTitle = title;
+    if(c.isWeekTitle){
+      finalTitle = title || getISOWeek(new Date());
+      var dup = m.items.find(function(x){ return x.listId === (listId||m.lists[0].id) && x.title === finalTitle; });
+      if(dup){ m.selectedItemId = dup.id; saveState(); renderTaskList(); renderDetail(); return; }
+    }
+    var t = {
+      id: uid(), title: finalTitle, notes: "",
+      listId: listId || (m.lists[0] && m.lists[0].id),
+      createdAt: Date.now()
+    };
+    if(state.activeMode === "task"){
+      t.due = m.selectedView === "today" ? todayStr() : null;
+      t.flagged = m.selectedView === "flagged";
+      t.priority = null; t.completed = false; t.completedAt = null;
+    } else if(state.activeMode === "idea"){
+      t.status = ""; t.fields = { tags: [] };
+    } else if(state.activeMode === "excel"){
+      t.fields = { syntax:"", example:"" };
+    } else if(state.activeMode === "history"){
+      t.fields = { content:"", tags:[] };
+    } else if(state.activeMode === "kpt"){
+      t.fields = { keep:"", problem:"", "try":"" };
+    }
+    m.items.push(t);
+    if(c.autoSelectOnAdd) m.selectedItemId = t.id;
+    saveState(); renderTaskList(); renderSidebar(); renderStatusBar();
+    if(c.autoSelectOnAdd) renderDetail();
+  }
+
+  function copyText(str){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(str).catch(function(){ fallbackCopy(str); });
+    } else { fallbackCopy(str); }
+  }
+  function fallbackCopy(str){
+    var ta = document.createElement("textarea");
+    ta.value = str; ta.style.position = "fixed"; ta.style.left = "-9999px";
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    try{ document.execCommand("copy"); }catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  /* =========================================================
+     List (category) modal — shared across modes
+  ========================================================= */
+  var modalOverlay = null;
+  function openListModal(editingList){
+    closeModal();
+    var c = cfg();
+    modalOverlay = document.createElement("div");
+    modalOverlay.className = "modal-overlay";
+    var chosenColor = editingList ? editingList.color : COLORS[4];
+    modalOverlay.innerHTML =
+      '<div class="modal-card">' +
+        '<h3>'+(editingList ? (c.listLabel+"を編集") : (c.listLabel+"を新規作成"))+'</h3>' +
+        '<input type="text" id="listNameInput" placeholder="'+escapeHtml(c.listLabel)+'名" value="'+(editingList?escapeHtml(editingList.name):"")+'">' +
+        '<div class="color-swatches" id="colorSwatches"></div>' +
+        '<div class="modal-buttons">' +
+          (editingList ? '<button class="btn btn-danger" id="deleteListBtn" style="margin-right:auto;">削除</button>' : '') +
+          '<button class="btn btn-secondary" id="cancelListBtn">キャンセル</button>' +
+          '<button class="btn btn-primary" id="saveListBtn">保存</button>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(modalOverlay);
+
+    var swatchWrap = modalOverlay.querySelector("#colorSwatches");
+    COLORS.forEach(function(cColor){
+      var sw = document.createElement("div");
+      sw.className = "swatch" + (cColor === chosenColor ? " selected" : "");
+      sw.style.background = cColor;
+      sw.addEventListener("click", function(){
+        swatchWrap.querySelectorAll(".swatch").forEach(function(s){ s.classList.remove("selected"); });
+        sw.classList.add("selected");
+        chosenColor = cColor;
+      });
+      swatchWrap.appendChild(sw);
+    });
+
+    modalOverlay.querySelector("#cancelListBtn").addEventListener("click", closeModal);
+    modalOverlay.addEventListener("click", function(e){ if(e.target === modalOverlay) closeModal(); });
+
+    modalOverlay.querySelector("#saveListBtn").addEventListener("click", function(){
+      var name = modalOverlay.querySelector("#listNameInput").value.trim();
+      if(!name) return;
+      if(editingList){ editingList.name = name; editingList.color = chosenColor; }
+      else{
+        var newList = { id: uid(), name: name, color: chosenColor };
+        ms().lists.push(newList);
+        ms().selectedView = newList.id;
+      }
+      saveState(); closeModal(); render();
+    });
+
+    if(editingList){
+      modalOverlay.querySelector("#deleteListBtn").addEventListener("click", function(){
+        if(ms().lists.length <= 1){ alert("最後の"+c.listLabel+"は削除できません"); return; }
+        ms().lists = ms().lists.filter(function(l){ return l.id !== editingList.id; });
+        ms().items = ms().items.filter(function(t){ return t.listId !== editingList.id; });
+        if(ms().selectedView === editingList.id) ms().selectedView = c.hasSmartViews ? (c.defaultView || "all") : ms().lists[0].id;
+        saveState(); closeModal(); render();
+      });
+    }
+    setTimeout(function(){
+      var input = modalOverlay && modalOverlay.querySelector("#listNameInput");
+      if(input) input.focus();
+    }, 10);
+  }
+  function closeModal(){ if(modalOverlay){ modalOverlay.remove(); modalOverlay = null; } }
+
+  function updateThemeLabel(){
+    var isDark = state.theme === "dark";
+    $("themeLabel").textContent = isDark ? "ダークモード" : "ライトモード";
+    $("themeIcon").innerHTML = isDark
+      ? '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>'
+      : '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  }
+  updateThemeLabel();
+
+  /* =========================================================
+     Due notifications (task mode only)
+  ========================================================= */
+  var bannerDismissedDate = null;
+
+  function dueTasksNow(){
+    if(state.activeMode !== "task") return [];
+    return ms().items.filter(function(t){ return !t.completed && t.due && t.due <= todayStr(); });
+  }
+
+  function renderDueBanner(){
+    var banner = $("dueBanner");
+    if(state.activeMode !== "task"){ banner.style.display = "none"; return; }
+    var due = dueTasksNow();
+    if(due.length === 0 || bannerDismissedDate === todayStr()){
+      banner.style.display = "none";
+      return;
+    }
+    banner.style.display = "flex";
+    var overdueCount = due.filter(function(t){ return t.due < todayStr(); }).length;
+    var text = due.length + "件のタスクが期限です";
+    if(overdueCount > 0) text += "（うち期限切れ " + overdueCount + "件）";
+    $("dueBannerText").textContent = text;
+  }
+
+  $("addListBtn").addEventListener("click", function(){ openListModal(null); closeSidebarOnMobile(); });
+
+  $("dueBannerClose").addEventListener("click", function(){
+    bannerDismissedDate = todayStr();
+    $("dueBanner").style.display = "none";
+  });
+  $("dueBannerLink").addEventListener("click", function(){
+    ms().selectedView = "today"; ms().selectedItemId = null; saveState(); render();
+    closeSidebarOnMobile();
+  });
+
+  $("themeToggle").addEventListener("click", function(){
+    state.theme = (state.theme === "dark") ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", state.theme);
+    updateThemeLabel();
+    saveState();
+  });
+
+  function isMobile(){ return window.innerWidth <= 900; }
+  function openSidebarOnMobile(){
+    $("sidebar").classList.remove("collapsed");
+    if(isMobile()) $("sidebarBackdrop").classList.add("show");
+  }
+  function closeSidebarOnMobile(){
+    if(isMobile()){
+      $("sidebar").classList.add("collapsed");
+      $("sidebarBackdrop").classList.remove("show");
+    }
+  }
+  if(isMobile()) $("sidebar").classList.add("collapsed");
+
+  $("sidebarToggle").addEventListener("click", function(){
+    if($("sidebar").classList.contains("collapsed")) openSidebarOnMobile();
+    else closeSidebarOnMobile();
+  });
+  $("sidebarBackdrop").addEventListener("click", closeSidebarOnMobile);
+  window.addEventListener("resize", function(){
+    if(!isMobile()){
+      $("sidebar").classList.remove("collapsed");
+      $("sidebarBackdrop").classList.remove("show");
+    }else if(!$("sidebar").classList.contains("collapsed") && !$("sidebarBackdrop").classList.contains("show")){
+      $("sidebar").classList.add("collapsed");
+    }
+  });
+
+  $("searchInput").addEventListener("input", function(e){ searchQuery = e.target.value; renderTaskList(); });
+
+  $("exportBtn").addEventListener("click", function(){
+    var blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url; a.download = "taskdeck_backup_" + todayStr() + ".json";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  $("importBtn").addEventListener("click", function(){ $("importFile").click(); });
+  $("importFile").addEventListener("change", function(e){
+    var file = e.target.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(evt){
+      try{
+        var imported = JSON.parse(evt.target.result);
+        var migrated = migrateState(imported);
+        if(migrated){
+          state = migrated;
+          document.documentElement.setAttribute("data-theme", state.theme || "light");
+          updateThemeLabel();
+          saveState(); render();
+          alert("読み込みが完了しました");
+        }else{ alert("形式が正しくありません"); }
+      }catch(err){ alert("読み込みに失敗しました: " + err.message); }
+      $("importFile").value = "";
+    };
+    reader.readAsText(file);
+  });
+
+  render();
+
+  if("serviceWorker" in navigator){
+    window.addEventListener("load", function(){
+      navigator.serviceWorker.register("sw.js").catch(function(e){ console.warn("SW registration failed", e); });
+    });
+  }
+})();
+</script>
+</body>
+</html>
