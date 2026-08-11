@@ -312,14 +312,21 @@
   .field-row:last-child{border-bottom:none;}
   .field-row .f-icon{width:18px;color:var(--text-secondary);flex-shrink:0;display:flex;justify-content:center;}
   .field-row .f-label{font-size:13.5px;color:var(--text-primary);flex-shrink:0;width:74px;font-weight:500;}
-  .field-row input[type="date"],.field-row input[type="text"]{
+  .field-row input[type="date"],.field-row input[type="time"],.field-row input[type="text"]{
     border:none;outline:none;background:transparent;color:var(--text-primary);
-    font-size:13.5px;font-family:inherit;flex:1;text-align:right;cursor:pointer;
+    font-size:13.5px;font-family:inherit;cursor:pointer;
   }
+  .field-row input[type="date"]{text-align:right;}
+  .field-row input[type="time"]{width:82px;text-align:right;}
+  .field-row input[type="time"]:disabled{opacity:.4;cursor:default;}
+  .due-time-wrap{display:flex;align-items:center;gap:6px;margin-left:auto;}
   .field-row input[type="text"]{cursor:text;}
   select.plain-select{
-    border:none;outline:none;background:transparent;color:var(--text-primary);
+    border:none;outline:none;background:var(--card-bg);color:var(--text-primary);
     font-size:13.5px;font-family:inherit;flex:1;text-align:right;cursor:pointer;direction:rtl;
+  }
+  select.plain-select option{
+    background:var(--card-bg);color:var(--text-primary);
   }
 
   .segmented{
@@ -751,7 +758,6 @@
     return defaultState();
   }
 
-  var state = loadState();
   function loadState(){
     try{
       var raw = localStorage.getItem(STORAGE_KEY);
@@ -763,6 +769,7 @@
     try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
     catch(e){ console.warn("save failed", e); }
   }
+  var state = loadState();
 
   document.documentElement.setAttribute("data-theme", state.theme || "light");
 
@@ -1077,7 +1084,10 @@
       if(t.due){
         var chip = document.createElement("span");
         chip.className = "due-chip" + (isOverdue(t) ? " overdue" : (isToday(t) ? " today" : ""));
-        chip.textContent = formatDue(t.due);
+        var chipText = formatDue(t.due);
+        if(t.dueTime) chipText += " " + t.dueTime;
+        if(t.repeat) chipText += " ↻";
+        chip.textContent = chipText;
         meta.appendChild(chip);
       }
       if(t.notes){
@@ -1293,6 +1303,7 @@
   var ICON_PRIORITY = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
   var ICON_LIST = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V4h8v3"/></svg>';
   var ICON_STATUS = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>';
+  var ICON_REPEAT = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>';
 
   function renderFieldGroup(t, c){
     var group = $("fieldGroup");
@@ -1311,12 +1322,39 @@
 
     if(c.hasDue){
       var rowD = fieldRow(ICON_DUE, "期限");
+      var dueWrap = document.createElement("div");
+      dueWrap.className = "due-time-wrap";
       var dueInput = document.createElement("input");
       dueInput.type = "date";
       dueInput.value = t.due || "";
-      dueInput.onchange = function(){ t.due = dueInput.value || null; saveState(); render(); };
-      rowD.appendChild(dueInput);
+      var timeInput = document.createElement("input");
+      timeInput.type = "time";
+      timeInput.value = t.dueTime || "";
+      timeInput.disabled = !t.due;
+      dueInput.onchange = function(){
+        t.due = dueInput.value || null;
+        if(!t.due){ t.dueTime = null; }
+        saveState(); render();
+      };
+      timeInput.onchange = function(){ t.dueTime = timeInput.value || null; saveState(); render(); };
+      dueWrap.appendChild(dueInput);
+      dueWrap.appendChild(timeInput);
+      rowD.appendChild(dueWrap);
       group.appendChild(rowD);
+
+      var rowR = fieldRow(ICON_REPEAT, "繰り返し");
+      var segR = document.createElement("div");
+      segR.className = "segmented";
+      [["","なし"],["daily","毎日"],["weekly","毎週"],["monthly","毎月"]].forEach(function(pair){
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.textContent = pair[1];
+        btn.classList.toggle("active", pair[0] === (t.repeat||""));
+        btn.onclick = function(){ t.repeat = pair[0] || null; saveState(); renderTaskList(); renderDetail(); };
+        segR.appendChild(btn);
+      });
+      rowR.appendChild(segR);
+      group.appendChild(rowR);
     }
 
     if(c.hasPriority){
@@ -1401,9 +1439,25 @@
   /* =========================================================
      Mutations
   ========================================================= */
+  function nextRepeatDate(dueStr, repeat){
+    var base = dueStr ? new Date(dueStr+"T00:00:00") : new Date(todayStr()+"T00:00:00");
+    var today = new Date(todayStr()+"T00:00:00");
+    if(base < today) base = today;
+    if(repeat === "daily") base.setDate(base.getDate()+1);
+    else if(repeat === "weekly") base.setDate(base.getDate()+7);
+    else if(repeat === "monthly") base.setMonth(base.getMonth()+1);
+    return base.getFullYear()+"-"+String(base.getMonth()+1).padStart(2,"0")+"-"+String(base.getDate()).padStart(2,"0");
+  }
+
   function toggleComplete(id){
     var t = currentItems().find(function(x){ return x.id === id; });
     if(!t) return;
+    if(!t.completed && t.repeat && state.activeMode === "task"){
+      // 繰り返しタスク: 完了にせず次回の期限へ進める
+      t.due = nextRepeatDate(t.due, t.repeat);
+      saveState(); render();
+      return;
+    }
     t.completed = !t.completed;
     t.completedAt = t.completed ? Date.now() : null;
     saveState(); render();
@@ -1425,6 +1479,7 @@
     };
     if(state.activeMode === "task"){
       t.due = m.selectedView === "today" ? todayStr() : null;
+      t.dueTime = null; t.repeat = null;
       t.flagged = m.selectedView === "flagged";
       t.priority = null; t.completed = false; t.completedAt = null;
     } else if(state.activeMode === "idea"){
@@ -1642,6 +1697,7 @@
     });
   }
 })();
+
 </script>
 </body>
 </html>
