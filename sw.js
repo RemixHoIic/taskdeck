@@ -2,7 +2,7 @@
 // アプリ本体（HTML/manifest/アイコン）をキャッシュし、オフラインでも起動できるようにする。
 // データ自体は localStorage に保存されるため、このSWはキャッシュ更新のみを担当する。
 
-var CACHE_NAME = "taskdeck-cache-v1";
+var CACHE_NAME = "taskdeck-cache-v2";
 var CORE_ASSETS = [
   "./",
   "./index.html",

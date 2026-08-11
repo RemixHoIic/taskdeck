@@ -416,9 +416,59 @@
   }
   .sidebar-backdrop.show{display:block;}
 
+  /* ---------- Quick nav (mobile) ---------- */
+  .quick-nav{display:none;}
+  .qn-modes{display:flex;flex-wrap:wrap;gap:5px;padding:0 14px 10px;}
+  .qn-mode-pill{
+    flex:0 0 auto;display:flex;align-items:center;gap:4px;padding:6px 9px;border-radius:999px;
+    background:var(--pill-bg);color:var(--text-secondary);font-size:12px;font-weight:600;
+    white-space:nowrap;cursor:pointer;user-select:none;
+  }
+  .qn-mode-pill svg{flex-shrink:0;}
+  .qn-mode-pill.active{background:var(--nav-active-bg);color:var(--nav-active-text);}
+  .quick-nav-view{
+    display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 16px 8px;
+    padding:10px 13px;background:var(--card-bg);border:1px solid var(--card-border);
+    border-radius:11px;cursor:pointer;font-size:14px;font-weight:700;color:var(--text-primary);user-select:none;
+  }
+  .quick-nav-view .chev{transition:transform .15s ease;color:var(--text-tertiary);flex-shrink:0;}
+  .quick-nav-view.open .chev{transform:rotate(180deg);}
+  .quick-nav-dropdown{
+    display:none;margin:0 16px 10px;background:var(--card-bg);border:1px solid var(--card-border);
+    border-radius:11px;box-shadow:var(--shadow-card);max-height:46vh;overflow-y:auto;padding:6px;
+  }
+  .quick-nav-dropdown.show{display:block;}
+  .qn-drop-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;cursor:pointer;font-size:13.5px;color:var(--text-primary);}
+  .qn-drop-item:hover{background:var(--hover);}
+  .qn-drop-item.active{background:var(--hover);font-weight:700;}
+  .qn-drop-item svg{flex-shrink:0;color:var(--text-secondary);}
+  .qn-drop-divider{height:1px;background:var(--card-border);margin:6px 4px;}
+
+  /* ---------- Shopping list ---------- */
+  .shopping-toggle-row{
+    display:flex;align-items:center;gap:12px;background:var(--input-bg);border:1px solid var(--input-border);
+    border-radius:10px;padding:11px 13px;margin-bottom:16px;
+  }
+  .shopping-toggle-text{flex:1;}
+  .shopping-toggle-title{font-size:13.5px;font-weight:600;color:var(--text-primary);}
+  .shopping-toggle-sub{font-size:11.5px;color:var(--text-secondary);margin-top:2px;line-height:1.4;}
+  .shopping-reset-row{
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
+    background:var(--input-bg);border:1px solid var(--input-border);border-radius:9px;
+    padding:8px 11px;margin:4px 4px 10px;font-size:12.5px;font-weight:600;color:var(--text-secondary);
+  }
+  .shopping-reset-row button{
+    background:var(--pill-bg);color:var(--text-primary);border:none;border-radius:999px;
+    padding:6px 12px;font-size:11.5px;font-weight:700;cursor:pointer;
+  }
+  .shopping-reset-row button:disabled{opacity:.45;cursor:default;}
+  .shopping-reset-row button:not(:disabled):hover{background:var(--hover);color:var(--accent);}
+
   @media (max-width:900px){
     html,body{overflow:auto;height:auto;min-height:100vh;}
+    html.tdk-overlay,html.tdk-overlay body{overflow:hidden;height:100%;min-height:0;}
     .app{height:100vh;height:100dvh;}
+    html.tdk-overlay .app{height:100%;}
     .sidebar{
       position:fixed;z-index:40;top:0;bottom:0;left:0;height:100vh;height:100dvh;
       box-shadow:var(--shadow-card);
@@ -426,10 +476,14 @@
       padding-bottom:calc(20px + env(safe-area-inset-bottom));
       margin-left:-240px;
     }
+    html.tdk-overlay .sidebar{height:100%;}
     .sidebar:not(.collapsed){margin-left:0;}
     .header-icon-btn{display:flex !important;}
     .main-header{padding:calc(16px + env(safe-area-inset-top)) 16px 12px;}
-    .main-title{font-size:23px;}
+    .main-header > div{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}
+    .main-title{font-size:19px;}
+    .main-sub{margin-top:0;}
+    .quick-nav{display:block;}
     .content-row{padding:0 16px 14px;position:relative;flex-direction:column;min-height:0;}
     .due-banner{margin:0 16px 12px;}
     .task-list-card{width:auto;flex:1;min-height:0;}
@@ -522,6 +576,15 @@
       </div>
     </div>
 
+    <div class="quick-nav" id="quickNav">
+      <div class="qn-modes" id="quickNavModes"></div>
+      <div class="quick-nav-view" id="quickNavView">
+        <span id="quickNavViewLabel">今日</span>
+        <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="quick-nav-dropdown" id="quickNavDropdown"></div>
+    </div>
+
     <div class="due-banner" id="dueBanner" style="display:none;">
       <div class="due-banner-icon">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
@@ -576,6 +639,26 @@
 
   var STORAGE_KEY = "apple_task_manager_v1";
   var COLORS = ["#E24B4A","#F0A23D","#F5CC3E","#34B87A","#2E5BFF","#6C5DD3","#B45DE0","#E0548C","#8A90A6"];
+
+  /* =========================================================
+     コンテキスト自動判定（同じファイルをPC/スマホどちらで開いても、
+     何かに埋め込まれて(iframe内で)開かれても自動で最適な表示に切り替える）。
+     - IS_OVERLAY: 何らかのiframe内で開かれているか
+     - isNarrow(): 画面幅が狭い（スマホなど）か
+     - isMobilePhoneContext(): iframeではない状態で幅が狭い＝スマホ本体で
+       直接開いているケース。この場合だけ Excel/対応履歴/KPT を隠す。
+  ========================================================= */
+  var IS_OVERLAY = (function(){
+    try { return window.self !== window.top; } catch(e){ return true; }
+  })();
+  if(IS_OVERLAY) document.documentElement.classList.add("tdk-overlay");
+  function isNarrow(){ return window.innerWidth <= 900; }
+  function isMobilePhoneContext(){ return !IS_OVERLAY && isNarrow(); }
+  var MOBILE_HIDDEN_MODES = ["excel","history","kpt"];
+  function visibleModeIds(){
+    if(isMobilePhoneContext()) return MODE_IDS.filter(function(m){ return MOBILE_HIDDEN_MODES.indexOf(m) === -1; });
+    return MODE_IDS;
+  }
 
   function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
   function todayStr(){
@@ -771,6 +854,13 @@
   }
   var state = loadState();
 
+  // 別タブで保存した変更をこのタブにも反映する
+  window.addEventListener("storage", function(e){
+    if(e.key === STORAGE_KEY && e.newValue){
+      try{ state = migrateState(JSON.parse(e.newValue)); render(); }catch(err){ /* ignore */ }
+    }
+  });
+
   document.documentElement.setAttribute("data-theme", state.theme || "light");
 
   var searchQuery = "";
@@ -795,6 +885,10 @@
   ========================================================= */
   function isOverdue(t){ return t.due && !t.completed && t.due < todayStr(); }
   function isToday(t){ return t.due === todayStr() && !t.completed; }
+  function isShoppingList(listId){
+    var l = ms().lists.find(function(x){ return x.id === listId; });
+    return !!(l && l.kind === "shopping");
+  }
 
   function itemsForView(viewId){
     var all = currentItems();
@@ -818,32 +912,113 @@
      Render: overall
   ========================================================= */
   function render(){
+    var vis = visibleModeIds();
+    if(vis.indexOf(state.activeMode) === -1) state.activeMode = "task";
     renderModeTabs();
     renderSidebar();
     renderTaskList();
     renderDetail();
     renderStatusBar();
     renderDueBanner();
+    renderQuickNav();
+  }
+
+  function switchMode(m){
+    if(state.activeMode === m) return;
+    state.activeMode = m;
+    searchQuery = ""; $("searchInput").value = "";
+    completedCollapsed = true;
+    saveState(); render();
   }
 
   function renderModeTabs(){
     var el = $("modeTabs");
     el.innerHTML = "";
-    MODE_IDS.forEach(function(m){
+    visibleModeIds().forEach(function(m){
       var c = MODE_CONFIG[m];
       var tab = document.createElement("div");
       tab.className = "mode-tab" + (state.activeMode === m ? " active" : "");
       tab.innerHTML = c.icon + "<span>"+escapeHtml(c.tabLabel)+"</span>";
       tab.addEventListener("click", function(){
-        if(state.activeMode === m) return;
-        state.activeMode = m;
-        searchQuery = ""; $("searchInput").value = "";
-        completedCollapsed = true;
-        saveState(); render();
+        switchMode(m);
         closeSidebarOnMobile();
       });
       el.appendChild(tab);
     });
+  }
+
+  /* =========================================================
+     Quick nav bar（スマホ用の常設ナビ）
+     三本線のサイドバーを開かなくても、モード切替とビュー切替が
+     その場でできるようにするための簡易バー。
+  ========================================================= */
+  function renderQuickNav(){
+    var qnModes = $("quickNavModes");
+    if(!qnModes) return; // 古いHTMLとの後方互換
+    qnModes.innerHTML = "";
+    visibleModeIds().forEach(function(m){
+      var c = MODE_CONFIG[m];
+      var pill = document.createElement("div");
+      pill.className = "qn-mode-pill" + (state.activeMode === m ? " active" : "");
+      pill.innerHTML = c.icon + "<span>" + escapeHtml(c.tabLabel) + "</span>";
+      pill.addEventListener("click", function(){ switchMode(m); closeQuickNavDropdown(); });
+      qnModes.appendChild(pill);
+    });
+
+    var meta = currentViewMeta();
+    var countTxt = "";
+    if(ms().selectedView){
+      var n = countForView(ms().selectedView);
+      if(n) countTxt = " (" + n + ")";
+    }
+    $("quickNavViewLabel").textContent = meta.name + countTxt;
+
+    renderQuickNavDropdown();
+  }
+
+  function renderQuickNavDropdown(){
+    var el = $("quickNavDropdown");
+    if(!el) return;
+    el.innerHTML = "";
+    var rows = [];
+    if(state.activeMode === "task"){
+      rows.push({ id:"today", name:"今日", icon:ICONS.today });
+      rows.push({ id:"upcoming", name:"予定", icon:ICONS.upcoming });
+      rows.push({ id:"flagged", name:"フラグ付き", icon:ICONS.flagged });
+      rows.push({ id:"all", name:"すべて", icon:ICONS.all });
+    } else {
+      rows.push({ id:"all", name:"すべて", icon:ICONS.all });
+    }
+    rows.forEach(function(r){
+      var d = document.createElement("div");
+      d.className = "qn-drop-item" + (ms().selectedView === r.id ? " active" : "");
+      d.innerHTML = r.icon + "<span>" + escapeHtml(r.name) + "</span>";
+      d.addEventListener("click", function(){
+        ms().selectedView = r.id; ms().selectedItemId = null; saveState(); closeQuickNavDropdown(); render();
+      });
+      el.appendChild(d);
+    });
+
+    if(ms().lists.length){
+      var divider = document.createElement("div");
+      divider.className = "qn-drop-divider";
+      el.appendChild(divider);
+    }
+    ms().lists.forEach(function(l){
+      var d = document.createElement("div");
+      d.className = "qn-drop-item" + (ms().selectedView === l.id ? " active" : "");
+      d.innerHTML = '<span class="color-dot" style="background:'+l.color+'"></span><span>'+escapeHtml(l.name)+(l.kind==="shopping" ? " 🛒" : "")+'</span>';
+      d.addEventListener("click", function(){
+        ms().selectedView = l.id; ms().selectedItemId = null; saveState(); closeQuickNavDropdown(); render();
+      });
+      el.appendChild(d);
+    });
+  }
+
+  function closeQuickNavDropdown(){
+    var dd = $("quickNavDropdown"), vb = $("quickNavView");
+    if(dd) dd.classList.remove("show");
+    if(vb) vb.classList.remove("open");
   }
 
   function renderSidebar(){
@@ -880,7 +1055,7 @@
       row.className = "nav-item" + (ms().selectedView === l.id ? " active" : "");
       row.innerHTML =
         '<span class="color-dot" style="background:'+l.color+'"></span>' +
-        '<span class="nav-name">'+escapeHtml(l.name)+'</span>' +
+        '<span class="nav-name">'+escapeHtml(l.name)+(l.kind==="shopping" ? " 🛒" : "")+'</span>' +
         '<span class="nav-count">'+(countForView(l.id) || "")+'</span>' +
         '<button class="nav-edit-btn" title="編集・削除" aria-label="編集・削除"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></button>';
       row.addEventListener("click", function(){
@@ -948,10 +1123,25 @@
     taskListScroll.innerHTML = "";
 
     var isCustomList = ms().lists.some(function(l){ return l.id === ms().selectedView; });
+    if(isCustomList && !searchQuery.trim() && state.activeMode === "task" && isShoppingList(ms().selectedView)){
+      var doneCount = currentItems().filter(function(t){ return t.listId === ms().selectedView && t.completed; }).length;
+      var resetRow = document.createElement("div");
+      resetRow.className = "shopping-reset-row";
+      resetRow.innerHTML = '<span>🛒 買い物リスト</span><button type="button" id="shoppingResetBtn"'+(doneCount===0?" disabled":"")+'>チェックをすべて外す'+(doneCount?" ("+doneCount+")":"")+'</button>';
+      taskListScroll.appendChild(resetRow);
+      resetRow.querySelector("#shoppingResetBtn").addEventListener("click", function(){
+        currentItems().forEach(function(t){
+          if(t.listId === ms().selectedView && t.completed){ t.completed = false; t.completedAt = null; }
+        });
+        saveState(); render();
+      });
+    }
+
     if(isCustomList && !searchQuery.trim()){
       var quickAdd = document.createElement("div");
       quickAdd.className = "quick-add";
       var placeholder = c.isWeekTitle ? (c.addPlaceholder + " (今週:" + getISOWeek(new Date()) + ")") : c.addPlaceholder;
+      if(state.activeMode === "task" && isShoppingList(ms().selectedView)) placeholder = "買うものを追加";
       quickAdd.innerHTML = '<div class="plus-circle">+</div><input type="text" placeholder="'+escapeHtml(placeholder)+'" id="quickAddInput">';
       taskListScroll.appendChild(quickAdd);
       var qi = quickAdd.querySelector("input");
@@ -995,6 +1185,13 @@
   }
 
   function renderTaskModeList(list){
+    if(isShoppingList(ms().selectedView)){
+      // 買い物リスト: チェック済みも消さずそのまま並べる（取り消し線のみ）。まとめてリセットは上のボタンで。
+      var sorted = list.slice().sort(function(a,b){ return (a.createdAt||0) - (b.createdAt||0); });
+      sorted.forEach(function(t){ taskListScroll.appendChild(buildItemRow(t)); });
+      return;
+    }
+
     var open = list.filter(function(t){ return !t.completed; });
     var done = list.filter(function(t){ return t.completed; });
 
@@ -1309,8 +1506,9 @@
     var group = $("fieldGroup");
     group.innerHTML = "";
     if(!t.fields) t.fields = {};
+    var shopping = state.activeMode === "task" && isShoppingList(t.listId);
 
-    if(c.hasFlag){
+    if(c.hasFlag && !shopping){
       var row = fieldRow(ICON_FLAG, "フラグ");
       var toggle = document.createElement("div");
       toggle.className = "toggle" + (t.flagged ? " on" : "");
@@ -1320,7 +1518,7 @@
       group.appendChild(row);
     }
 
-    if(c.hasDue){
+    if(c.hasDue && !shopping){
       var rowD = fieldRow(ICON_DUE, "期限");
       var dueWrap = document.createElement("div");
       dueWrap.className = "due-time-wrap";
@@ -1357,7 +1555,7 @@
       group.appendChild(rowR);
     }
 
-    if(c.hasPriority){
+    if(c.hasPriority && !shopping){
       var rowP = fieldRow(ICON_PRIORITY, "優先度");
       var seg = document.createElement("div");
       seg.className = "segmented";
@@ -1520,11 +1718,24 @@
     modalOverlay = document.createElement("div");
     modalOverlay.className = "modal-overlay";
     var chosenColor = editingList ? editingList.color : COLORS[4];
+    var chosenKind = editingList ? (editingList.kind || "todo") : "todo";
+    var shoppingToggleHtml = "";
+    if(state.activeMode === "task"){
+      shoppingToggleHtml =
+        '<div class="shopping-toggle-row" id="shoppingToggleRow">' +
+          '<div class="shopping-toggle-text">' +
+            '<div class="shopping-toggle-title">🛒 買い物リストにする</div>' +
+            '<div class="shopping-toggle-sub">チェックした項目は消えずに残り、ボタン一つで全部リセットして次回また使えます</div>' +
+          '</div>' +
+          '<div class="toggle' + (chosenKind === "shopping" ? " on" : "") + '" id="shoppingKindToggle"><div class="knob"></div></div>' +
+        '</div>';
+    }
     modalOverlay.innerHTML =
       '<div class="modal-card">' +
         '<h3>'+(editingList ? (c.listLabel+"を編集") : (c.listLabel+"を新規作成"))+'</h3>' +
         '<input type="text" id="listNameInput" placeholder="'+escapeHtml(c.listLabel)+'名" value="'+(editingList?escapeHtml(editingList.name):"")+'">' +
         '<div class="color-swatches" id="colorSwatches"></div>' +
+        shoppingToggleHtml +
         '<div class="modal-buttons">' +
           (editingList ? '<button class="btn btn-danger" id="deleteListBtn" style="margin-right:auto;">削除</button>' : '') +
           '<button class="btn btn-secondary" id="cancelListBtn">キャンセル</button>' +
@@ -1549,12 +1760,20 @@
     modalOverlay.querySelector("#cancelListBtn").addEventListener("click", closeModal);
     modalOverlay.addEventListener("click", function(e){ if(e.target === modalOverlay) closeModal(); });
 
+    var kindToggleEl = modalOverlay.querySelector("#shoppingKindToggle");
+    if(kindToggleEl){
+      kindToggleEl.addEventListener("click", function(){
+        chosenKind = (chosenKind === "shopping") ? "todo" : "shopping";
+        kindToggleEl.classList.toggle("on", chosenKind === "shopping");
+      });
+    }
+
     modalOverlay.querySelector("#saveListBtn").addEventListener("click", function(){
       var name = modalOverlay.querySelector("#listNameInput").value.trim();
       if(!name) return;
-      if(editingList){ editingList.name = name; editingList.color = chosenColor; }
+      if(editingList){ editingList.name = name; editingList.color = chosenColor; editingList.kind = chosenKind; }
       else{
-        var newList = { id: uid(), name: name, color: chosenColor };
+        var newList = { id: uid(), name: name, color: chosenColor, kind: chosenKind };
         ms().lists.push(newList);
         ms().selectedView = newList.id;
       }
@@ -1657,6 +1876,20 @@
   });
 
   $("searchInput").addEventListener("input", function(e){ searchQuery = e.target.value; renderTaskList(); });
+
+  if($("quickNavView")){
+    $("quickNavView").addEventListener("click", function(e){
+      e.stopPropagation();
+      $("quickNavDropdown").classList.toggle("show");
+      $("quickNavView").classList.toggle("open");
+    });
+    document.addEventListener("click", function(e){
+      var dd = $("quickNavDropdown");
+      if(dd && dd.classList.contains("show") && !dd.contains(e.target)){
+        closeQuickNavDropdown();
+      }
+    });
+  }
 
   $("exportBtn").addEventListener("click", function(){
     var blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
